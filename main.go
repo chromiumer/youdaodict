@@ -4,18 +4,17 @@ import (
 	"crypto/md5"
 	"encoding/hex"
 	"encoding/json"
-	"flag"
 	"fmt"
 	"io/ioutil"
 	"math/rand"
 	"net/http"
+	"os"
 	"strconv"
 	"strings"
 	"time"
 )
 
 const (
-	//WORDS  = "pretty"                           //查询词
 	FROM   = "en"                               //源语言
 	TO     = "zh_CHS"                           //目标语言
 	APPKEY = "2d70c401bde9b8c0"                 //AppKey=应用ID
@@ -61,15 +60,22 @@ func genSign(appkey string, words string, salt string, secret string) string {
 
 func main() {
 
-	WORDS := flag.String("words", "", "please input a word.")
-	flag.Parse()
+	var sum string
+
+	for i := 1; i < len(os.Args); i++ {
+		sum += os.Args[i] + " "
+	}
+
+	//fmt.Printf("%v\n", sum)
+
+	WORDS := sum
 
 	SALT := strconv.Itoa(GenRandNumber(100))
-	SIGN := genSign(APPKEY, *WORDS, SALT, SECRET)
+	SIGN := genSign(APPKEY, WORDS, SALT, SECRET)
 
 	req, _ := http.NewRequest("GET", "https://openapi.youdao.com/api", nil)
 	q := req.URL.Query()
-	q.Add("q", *WORDS)
+	q.Add("q", WORDS)
 	q.Add("from", FROM)
 	q.Add("to", TO)
 	q.Add("appKey", APPKEY)
@@ -98,7 +104,7 @@ func main() {
 	}
 
 	//短语
-	fmt.Printf("\n%c[1;;32m%v%c[0m", 0x1B, "短语: ", 0x1B)
+	fmt.Printf("\n%c[1;;32m%v%c[0m\n", 0x1B, "短语: ", 0x1B)
 	for i := 0; i < len(m.Web); i++ {
 
 		fmt.Printf("%c[1;;32m%v%c[0m  ", 0x1B, m.Web[i].Key, 0x1B)

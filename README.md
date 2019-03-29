@@ -1,20 +1,24 @@
 # youdaodict
 
 ```
-admin$ ./main -words=head up
+git clone https://github.com/chromiumer/youdaodict.git
+cd youdaodict
+go build
+cp youdaodict /usr/local/bin/y
+sudo chmod +x /usr/local/bin/y
+ 
+MacBookPro:youdaodict admin$ y being
 
-英: [hed]  美: [hɛd]
+英: ['biːɪŋ]  美: ['biɪŋ]
 
-n. 头；头痛；上端；最前的部分；理解力
-vt. 前进；用头顶；作为…的首领；站在…的前头；给…加标题
-vi. 出发；成头状物；船驶往
-adj. 头的；主要的；在顶端的
-n. (Head)人名；(英)黑德
+n. 存在；生命；本质；品格
+adj. 存在的；现有的
 
-短语: recording head  记录头;录音磁头;录音头;磁头;
-Head crash  磁头划碰;磁头碰撞;磁头撞毁;磁头损毁;
-head nurse  护士长;护;护理主任;护长室;
+短语:
+Being Digital  数字化生存;数位革命;数字化;数码生活;
+human being  人类;人;人的存在;
+social being  社会存在;社会的存在;社会存有;
 
-考试级别 [初中 商务英语]
+考试级别 [高中 CET4 考研]
 
 ```
